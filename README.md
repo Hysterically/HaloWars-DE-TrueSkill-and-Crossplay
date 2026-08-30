@@ -1,6 +1,6 @@
-# HaloWars-DE-TrueSkill
+# HaloWars-DE-TrueSkill-and-Crossplay
 
-**Competitive TrueSkill & CSR ratings, leaderboards, and match history for Halo Wars: Definitive Edition (Microsoft Store).**
+**Competitive TrueSkill & CSR ratings, leaderboards, match history, and PC/Xbox cross-play for Halo Wars: Definitive Edition (Microsoft Store).**
 
 🌐 **Live ladder: [halo-wars-definitive-edition-stats.pages.dev](https://halo-wars-definitive-edition-stats.pages.dev)** — leaderboards, player pages, and recent games from the current ranked community, updated automatically.
 
@@ -44,6 +44,49 @@ https://github.com/user-attachments/assets/828fd36d-3f0d-4c69-944a-2b901892ea03
 - **v1.0** — first public release: TrueSkill and CSR ratings, match history, and in-game rank icons.
 
 Full notes for each version are on the [Releases](../../releases) page. Updating is one click from inside the game — see [Updating](#updating). Your ratings and match history are never at risk; they are not kept in that folder.
+
+## Requirements
+
+- Windows 10/11 (64-bit)
+- **Halo Wars: Definitive Edition — Microsoft Store / Xbox app version** (the Steam version is not supported by this tool)
+- **No administrator rights**
+
+**Does it need administrator?** No — and no UAC prompt at any point. The Microsoft Store version of the game runs inside a Windows sandbox (an *AppContainer*), which is why the overlay has to be loaded into the game rather than simply run alongside it. That loading is done by an ordinary user-level program, and once loaded the overlay lives inside the game's own sandbox with no privileges of its own. It only reads match results and draws its interface; it does not modify gameplay or touch any game file.
+
+---
+
+## Installation
+
+1. Download the latest release from the [Releases](../../releases) page and unzip it anywhere you like. Keep `HaloWarsStatsLoader.exe`, `MSTrueSkill.dll` and `ms_trueskill_config.default.txt` **together in the same folder**. (Your own settings file, `ms_trueskill_config.txt`, is created next to them on first launch.)
+2. Double-click **`Install Auto-Load.bat`** once — no terminal, no prompt, no administrator. (Prefer the command line? `HaloWarsStatsLoader.exe --install` does the same thing.)
+3. Start Halo Wars from the Xbox app as usual. The overlay appears by itself a few seconds in — press **INSERT** to show or hide it (you can pick a different key later in **Settings → Gameplay → Menu Key**).
+
+That is the whole setup. From then on it loads every time you play, and nothing is added to the game's own folder.
+
+To stop it loading automatically, double-click `Uninstall Auto-Load.bat` (or run `HaloWarsStatsLoader.exe --uninstall`).
+
+`HaloWarsStatsLoader.exe --status` shows what is currently set up, and `--inject` loads the overlay into a game that is already running if you would rather not install anything at all.
+
+> Moving the folder after installing breaks it, because the autostart entry records the exact path. Run `--install` again from the new location.
+
+---
+
+## Updating
+
+From v1.1.6 on, **the overlay updates itself**. When a new version is out, an **Update** button appears next to the version number at the bottom of the Settings tab: click it, let it finish, restart the game. The new files are swapped into your existing folder and your settings are untouched. Not in game? Double-click `Update.bat` in the overlay folder instead — same result.
+
+**On v1.1.5 or older?** Those versions predate the updater, so update by hand one last time — from then on it's the button:
+
+1. Close Halo Wars.
+2. In your **old** folder, double-click `Uninstall Auto-Load.bat`.
+3. Delete the old folder.
+4. Download the new release, unzip it anywhere, and double-click `Install Auto-Load.bat`.
+
+**Your ratings and match history are safe either way.** They are not stored in that folder — the overlay keeps them elsewhere and picks them straight back up, and the community leaderboard is downloaded again on first launch.
+
+The manual route resets your **in-game settings** to defaults (the in-game updater keeps them). So if you had the lobby rank icons switched on, turn them back on once afterwards: **Settings → "Show CSR ranks on lobby players"**. It takes effect immediately, no restart.
+
+---
 
 ## Why this exists
 
@@ -227,12 +270,12 @@ Here is the whole ladder against the tier system:
 | <img src="assets/h2/h2-rank-44.png" width="34"> | 1651&nbsp;–&nbsp;1708 | <img src="assets/csr/csr-onyx.png" width="22"> Onyx |
 | <img src="assets/h2/h2-rank-45.png" width="34"> | 1709&nbsp;–&nbsp;1766 | <img src="assets/csr/csr-onyx.png" width="22"> Onyx |
 | <img src="assets/h2/h2-rank-46.png" width="34"> | 1767&nbsp;–&nbsp;1824 | <img src="assets/csr/csr-onyx.png" width="22"> Onyx |
-| <img src="assets/h2/h2-rank-47.png" width="34"> <img src="assets/csr/csr-champion.png" width="22"> | **1825**&nbsp;–&nbsp;1882 | <img src="assets/csr/csr-onyx.png" width="22"> Onyx |
-| <img src="assets/h2/h2-rank-48.png" width="34"> <img src="assets/csr/csr-champion.png" width="22"> | 1883&nbsp;–&nbsp;1940 | <img src="assets/csr/csr-onyx.png" width="22"> Onyx |
-| <img src="assets/h2/h2-rank-49.png" width="34"> <img src="assets/csr/csr-champion.png" width="22"> | 1941&nbsp;–&nbsp;1999 | <img src="assets/csr/csr-onyx.png" width="22"> Onyx |
-| <img src="assets/h2/h2-rank-50.png" width="34"> <img src="assets/csr/csr-champion.png" width="22"> | **2000+** | <img src="assets/csr/csr-onyx.png" width="22"> Onyx |
+| <img src="assets/h2/h2-rank-47.png" width="34"> | **1825**&nbsp;–&nbsp;1882 | <img src="assets/csr/csr-champion.png" width="22"> Champion |
+| <img src="assets/h2/h2-rank-48.png" width="34"> | 1883&nbsp;–&nbsp;1940 | <img src="assets/csr/csr-champion.png" width="22"> Champion |
+| <img src="assets/h2/h2-rank-49.png" width="34"> | 1941&nbsp;–&nbsp;1999 | <img src="assets/csr/csr-champion.png" width="22"> Champion |
+| <img src="assets/h2/h2-rank-50.png" width="34"> | **2000+** | <img src="assets/csr/csr-champion.png" width="22"> Champion |
 
-Bold marks the **Champion floor** (rank 47) and the **rank-50 finish line**. <img src="assets/csr/csr-champion.png" width="16"> marks the ranks where a top-ten seat also earns the Champion crest.
+Bold marks the **Champion floor** (rank 47) and the **rank-50 finish line**. Ranks 47-50 are listed as **Champion** because that is the crest worn up there — but it is earned, not automatic: those ranks are Onyx-rated, and the crest goes to the **top ten players** who have also cleared the floor.
 
 On tiers up here: rank 40 is **Diamond 5 – 6**, the Diamond 6 → **Onyx** crossover at 1500 CSR falls inside rank 41, and everything from rank 42 up is Onyx.
 
@@ -276,49 +319,6 @@ Downloading the overlay connects you to the community history immediately — th
 </p>
 
 *Player names in screenshots are replaced with placeholders. More screenshots coming soon.*
-
----
-
-## Requirements
-
-- Windows 10/11 (64-bit)
-- **Halo Wars: Definitive Edition — Microsoft Store / Xbox app version** (the Steam version is not supported by this tool)
-- **No administrator rights**
-
-**Does it need administrator?** No — and no UAC prompt at any point. The Microsoft Store version of the game runs inside a Windows sandbox (an *AppContainer*), which is why the overlay has to be loaded into the game rather than simply run alongside it. That loading is done by an ordinary user-level program, and once loaded the overlay lives inside the game's own sandbox with no privileges of its own. It only reads match results and draws its interface; it does not modify gameplay or touch any game file.
-
----
-
-## Installation
-
-1. Download the latest release from the [Releases](../../releases) page and unzip it anywhere you like. Keep `HaloWarsStatsLoader.exe`, `MSTrueSkill.dll` and `ms_trueskill_config.default.txt` **together in the same folder**. (Your own settings file, `ms_trueskill_config.txt`, is created next to them on first launch.)
-2. Double-click **`Install Auto-Load.bat`** once — no terminal, no prompt, no administrator. (Prefer the command line? `HaloWarsStatsLoader.exe --install` does the same thing.)
-3. Start Halo Wars from the Xbox app as usual. The overlay appears by itself a few seconds in — press **INSERT** to show or hide it (you can pick a different key later in **Settings → Gameplay → Menu Key**).
-
-That is the whole setup. From then on it loads every time you play, and nothing is added to the game's own folder.
-
-To stop it loading automatically, double-click `Uninstall Auto-Load.bat` (or run `HaloWarsStatsLoader.exe --uninstall`).
-
-`HaloWarsStatsLoader.exe --status` shows what is currently set up, and `--inject` loads the overlay into a game that is already running if you would rather not install anything at all.
-
-> Moving the folder after installing breaks it, because the autostart entry records the exact path. Run `--install` again from the new location.
-
----
-
-## Updating
-
-From v1.1.6 on, **the overlay updates itself**. When a new version is out, an **Update** button appears next to the version number at the bottom of the Settings tab: click it, let it finish, restart the game. The new files are swapped into your existing folder and your settings are untouched. Not in game? Double-click `Update.bat` in the overlay folder instead — same result.
-
-**On v1.1.5 or older?** Those versions predate the updater, so update by hand one last time — from then on it's the button:
-
-1. Close Halo Wars.
-2. In your **old** folder, double-click `Uninstall Auto-Load.bat`.
-3. Delete the old folder.
-4. Download the new release, unzip it anywhere, and double-click `Install Auto-Load.bat`.
-
-**Your ratings and match history are safe either way.** They are not stored in that folder — the overlay keeps them elsewhere and picks them straight back up, and the community leaderboard is downloaded again on first launch.
-
-The manual route resets your **in-game settings** to defaults (the in-game updater keeps them). So if you had the lobby rank icons switched on, turn them back on once afterwards: **Settings → "Show CSR ranks on lobby players"**. It takes effect immediately, no restart.
 
 ---
 
