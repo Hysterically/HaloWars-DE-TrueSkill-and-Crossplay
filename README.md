@@ -4,7 +4,7 @@
 
 🌐 **Live ladder: [halo-wars-definitive-edition-stats.pages.dev](https://halo-wars-definitive-edition-stats.pages.dev)** — leaderboards, player pages, and recent games from the current ranked community, updated automatically.
 
-> ### ⬇️ [Download v1.2.6 — it updates itself from here on](../../releases/latest)
+> ### ⬇️ [Download v2.0.0 — it updates itself from here on](../../releases/latest)
 > Unzip, double-click `Install Auto-Load.bat` once, play. No terminal, no administrator rights — see [Installation](#installation). This is the **last download you'll ever need**: from now on the overlay offers each new version in-game, one click.
 > On first launch the overlay downloads the community match history and the leaderboards fill themselves in; your own finished matches upload automatically. To be **rated**, press *Request to join* on the Verified Roster tab (see [Joining the ladder](#joining-the-ladder)). Prefer a purely local tracker? Delete the two `sync_` lines from `ms_trueskill_config.txt` and nothing is ever uploaded.
 
@@ -16,6 +16,7 @@ https://github.com/user-attachments/assets/828fd36d-3f0d-4c69-944a-2b901892ea03
 
 ### What each update did
 
+- **v2.0.0** — post-game scoreboard recorded with every match; Random Map tab; one Leaderboards tab; one 1–50 curve; single Cross-Play switch; 200 fps; rematch and abandoned-match fixes.
 - **v1.2.6** — **matches were being recorded with players missing.** A match that ended on the wrong frame could be saved short-handed — a 3v3 stored as a 3v2, or, when the gaps evened out, filed under the wrong size entirely (a 3v3 as a 1v1 or 2v2; 49 of 1178 recorded matches were affected). **No rating was ever changed by this** — every affected match failed the ladder's own checks and was left unrated — but the game itself showed the wrong players and teams in Match History and on the stats site, and never counted. Three end-of-match reads could each drop players (a briefly-low player slot count, a single failed read marking a player unreadable, an invalid team value on the final frame); all three are now held at their last known-good value for the match instead of trusting whatever the final frame returned. **Update even if you have not seen this happen**: the record is written by whoever is running the overlay, so a match you played can still be saved wrong by someone else's older copy — it only stops once players have updated.
 - **v1.2.5** — **the anti-farm rule is gone, because it was making ratings inaccurate.** Winning as an 85%+ favourite used to earn each winner at most **+2 CSR** — but that cap was not applied to a displayed number, it was written back into the rating itself, replacing what TrueSkill 2 had just worked out about that player. Every match after it then started from the altered figure, and because ratings update against the other team's numbers too, one clamped win pulled a whole run of later results off on **both** sides. It also charged twice for the same thing: a match the system already called at 85% is precisely the match it pays almost nothing for, so the rule taxed an expectation the engine had already priced in, and held established players below their real level. It is retroactive: the full match history re-rates without it on first launch, releasing every gain that was ever clamped, so **CSR will shift** (69 standings move, almost all upward; classic TrueSkill™ is untouched, so board order does not change). The guards that stop farming outright are all unchanged — a match rates only when every player in it is on the Verified Roster, uneven lineups never rate, and the map has to fit the match size — as are placements and the Diamond 3 initial rank cap. The **Team Balancer** also loses *Keep Pairs*: it now offers **Best Balance (CSR)** and **Random Teams** as themed buttons along the bottom of the tab, with Random Teams re-rolling on a repeat press once a minute.
 - **v1.2.4** — the **1–50 ladder now has a different top end per playlist**, because the boards do not play alike: rank **50** takes **2100** CSR in 1v1 (Standard and Deathmatch) and **2000** in 2v2, while 3v3 keeps its old **1900** exactly. Every bit of the extra distance is absorbed in ranks 40–50, so **ranks 1–39 are untouched on every board** and rank 40 still opens at 1419 everywhere. The **Champion** crest also moves down to each board's **rank 47** — **1895** in 1v1, **1825** in 2v2, **1720** in 3v3 — so the crest means the same thing on every playlist instead of being far harder to reach on one. Nothing about the rating changed: your CSR, your match history and your leaderboard position are exactly as they were, and only the rank numeral drawn beside them moves. A 1v1 rank 50 that reads 48 today is the same CSR it was yesterday — the ladder around it got longer. *(Superseded: the per-playlist split was later collapsed back onto one curve for every board — rank 50 at **2000**, Champion floor **1825** — which is what the ladder tables below describe.)*
@@ -110,6 +111,7 @@ Every feature below exists for a reason — either something the original game h
 
 ### 📜 Match history
 - Every ranked game recorded automatically: map, teams, leaders, scores, duration, and per-player rating changes.
+- Full post-game scoreboard with every match (v2.0).
 - Rich in-overlay match cards with map thumbnails, leader portraits, and result icons — filter by game type, playlist, map, or player.
 - Each team's **average rank** on the match card, so you can see how the two sides matched up without reading every player individually. Players with no rating yet are left out of the average rather than dragging it down, and no average is shown at all while a teammate is still in placement matches — a partial number would misstate the side's strength.
 
@@ -142,6 +144,9 @@ Every feature below exists for a reason — either something the original game h
 
 **Why:** Custom lobbies get sorted by whoever is loudest in chat, and the result is usually two stacked friends against a pickup team — the games nobody enjoys and everyone remembers. The ratings already know exactly how strong each seat is, so the split that makes the match close is a calculation, not an argument. It stays advisory on purpose: the balancer never touches the game, and players still switch sides with the lobby's own CHANGE TEAMS, so a host can overrule it whenever the reason for a lineup is something CSR cannot see. Players with no rating yet are weighted at the ladder's median rather than as zeroes, so a newcomer doesn't drag a team's average through the floor.
 
+### 🎲 Random Map
+- Hosts roll the map from odds set per playlist size; verified lobbies only, starts off.
+
 ### 🎖️ In-game rank icons
 - The game itself draws rank art next to players in the **pre-game lobby and the in-match scoreboard** — your opponents' ranks visible at a glance, using the classic 1–50 numerals.
 
@@ -153,7 +158,7 @@ Every feature below exists for a reason — either something the original game h
 **Why:** Halo Wars: DE has had cross-platform problems since the day it launched — PC and Xbox players have never been able to reliably find each other's games, and the two halves of the community ended up playing separately. That split hurts far more than it would in a big game: the active competitive population is small, and cutting it in two makes a full lobby harder to fill on both sides. This makes PC and Xbox lobbies visible to each other so the community can play as one pool again.
 
 ### ⚡ FPS cap control
-- Raise the game's frame-rate cap: 60 / 120 / 240 / 360 FPS, plus a built-in frame-rate meter. No config files, one hotkey.
+- Raise the game's frame-rate cap: 60 / 120 / 200 / 240 / 360 FPS, plus a built-in frame-rate meter. No config files, one hotkey.
 
 **Why:** The frame-rate cap is the part of this game that has aged worst. Even 120 FPS is well short of what a current GPU and a 144/240/360 Hz monitor will comfortably do on a title this old — a 2009 game is not what is straining your PC — and the difference shows immediately in camera panning and unit movement. The hardware is not the limit here; the cap is. So the cap is exposed directly — one hotkey, no config-file editing — with a frame-rate meter to confirm the new one actually took.
 
