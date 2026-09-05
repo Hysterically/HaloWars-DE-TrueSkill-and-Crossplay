@@ -111,7 +111,7 @@ Every feature below exists for a reason — either something the original game h
 
 ### 📜 Match history
 - Every ranked game recorded automatically: map, teams, leaders, scores, duration, and per-player rating changes.
-- Full post-game scoreboard with every match (v2.0).
+- Full post-game scoreboard with every match (v2.0). Website support for these stats comes later.
 - Rich in-overlay match cards with map thumbnails, leader portraits, and result icons — filter by game type, playlist, map, or player.
 - Each team's **average rank** on the match card, so you can see how the two sides matched up without reading every player individually. Players with no rating yet are left out of the average rather than dragging it down, and no average is shown at all while a teammate is still in placement matches — a partial number would misstate the side's strength.
 
