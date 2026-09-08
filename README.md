@@ -2,7 +2,7 @@
 
 **Competitive TrueSkill & CSR ratings, leaderboards, match history, and PC/Xbox cross-play for Halo Wars: Definitive Edition (Microsoft Store).**
 
-🌐 **Live ladder: [halo-wars-definitive-edition-stats.pages.dev](https://halo-wars-definitive-edition-stats.pages.dev)** — leaderboards, player pages, and recent games from the current ranked community, updated automatically.
+🌐 **Live ladder: [halowarsde.com](https://halowarsde.com)** — leaderboards, player pages, and recent games from the current ranked community, updated automatically.
 
 > ### ⬇️ [Download v2.0.0 — it updates itself from here on](../../releases/latest)
 > Unzip, double-click `Install Auto-Load.bat` once, play. No terminal, no administrator rights — see [Installation](#installation). This is the **last download you'll ever need**: from now on the overlay offers each new version in-game, one click.
@@ -293,13 +293,13 @@ A rank that spans two sub-ranks (rank 2 is Bronze 1–2, for example) is simply 
 3. You lose to a Diamond team: barely moves you — losing to better players is expected and costs little.
 4. Over the next ~10–20 games your uncertainty shrinks, the swings get smaller, and your rating settles where you actually play.
 
-All of this is visible live on the **[stats site](https://halo-wars-definitive-edition-stats.pages.dev)**: full leaderboards, every player's rating history, and recent games with per-match rating changes.
+All of this is visible live on the **[stats site](https://halowarsde.com)**: full leaderboards, every player's rating history, and recent games with per-match rating changes.
 
 ---
 
 ## Where the data comes from
 
-**Halo Wars: Definitive Edition has no official API** — no Halo Waypoint stats, no public match service, nothing to query. So as each ranked match ends, the overlay reads the match data directly from the running game's memory (map, teams, leaders, scores, duration — the same info as the post-game screen) and syncs it to the shared community database that powers the ladder and the [stats site](https://halo-wars-definitive-edition-stats.pages.dev). Every player in a match reports the same game independently and duplicates are merged, so the ladder stays consistent without any official service behind it.
+**Halo Wars: Definitive Edition has no official API** — no Halo Waypoint stats, no public match service, nothing to query. So as each ranked match ends, the overlay reads the match data directly from the running game's memory (map, teams, leaders, scores, duration — the same info as the post-game screen) and syncs it to the shared community database that powers the ladder and the [stats site](https://halowarsde.com). Every player in a match reports the same game independently and duplicates are merged, so the ladder stays consistent without any official service behind it.
 
 ---
 
@@ -336,7 +336,7 @@ No. The overlay records match outcomes and displays ratings/statistics. It does 
 Not currently — this tool targets the Microsoft Store version.
 
 **Where do the ratings come from?**
-Every match is rated with the TrueSkill™ and TrueSkill 2 algorithms — the published rating systems designed for Xbox Live and Halo matchmaking, rewritten from the original research papers — over a shared community ladder. See [How the ratings work](#how-the-ratings-work) above, and browse the whole ladder on the [stats site](https://halo-wars-definitive-edition-stats.pages.dev).
+Every match is rated with the TrueSkill™ and TrueSkill 2 algorithms — the published rating systems designed for Xbox Live and Halo matchmaking, rewritten from the original research papers — over a shared community ladder. See [How the ratings work](#how-the-ratings-work) above, and browse the whole ladder on the [stats site](https://halowarsde.com).
 
 **The game has no API — how do you get match data at all?**
 The overlay records each match's results from your own game as it ends — see [Where the data comes from](#where-the-data-comes-from).
