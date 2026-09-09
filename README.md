@@ -145,7 +145,7 @@ Every feature below exists for a reason — either something the original game h
 **Why:** Custom lobbies get sorted by whoever is loudest in chat, and the result is usually two stacked friends against a pickup team — the games nobody enjoys and everyone remembers. The ratings already know exactly how strong each seat is, so the split that makes the match close is a calculation, not an argument. It stays advisory on purpose: the balancer never touches the game, and players still switch sides with the lobby's own CHANGE TEAMS, so a host can overrule it whenever the reason for a lineup is something CSR cannot see. Players with no rating yet are weighted at the ladder's median rather than as zeroes, so a newcomer doesn't drag a team's average through the floor.
 
 ### 🎲 Random Map
-- Hosts roll the map from odds set per playlist size; verified lobbies only, starts off. Works in Skirmish vs A.I. too, where you are always the host.
+- Hosts roll the map from odds set per playlist size; verified lobbies only, starts off. Works against A.I. too: a Create Game lobby you fill with A.I. rolls, and so does Skirmish, where you are always the host.
 
 ### 🎖️ In-game rank icons
 - The game itself draws rank art next to players in the **pre-game lobby and the in-match scoreboard** — your opponents' ranks visible at a glance, using the classic 1–50 numerals.
